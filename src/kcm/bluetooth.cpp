@@ -11,7 +11,6 @@
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
 
-#include <KAboutData>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KPluginFactory>
@@ -21,14 +20,11 @@
 
 #include "filereceiversettings.h"
 
-K_PLUGIN_CLASS_WITH_JSON(Bluetooth, "metadata.json")
+K_PLUGIN_CLASS_WITH_JSON(Bluetooth, "kcm_bluetooth.json")
 
-Bluetooth::Bluetooth(QObject *parent, const QVariantList &args)
-    : KQuickAddons::ConfigModule(parent, args)
+Bluetooth::Bluetooth(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
+    : KQuickAddons::ConfigModule(parent, data, args)
 {
-    KAboutData *about = new KAboutData("kcm_bluetooth", i18n("Bluetooth"), "1.0", QString(), KAboutLicense::GPL);
-    about->addAuthor(i18n("Nicolas Fella"), QString(), "nicolas.fella@gmx.de");
-    setAboutData(about);
     setButtons(KQuickAddons::ConfigModule::NoAdditionalButton);
 
     qmlRegisterAnonymousType<QAbstractItemModel>("org.kde.bluedevil.kcm", 1);
