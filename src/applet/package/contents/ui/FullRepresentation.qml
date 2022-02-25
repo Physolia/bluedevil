@@ -54,6 +54,7 @@ PlasmaExtras.Representation {
     PlasmaComponents3.ScrollView {
         id: scrollView
         anchors.fill: parent
+        anchors.rightMargin: PlasmaComponents3.ScrollBar.vertical.visible ? -6 : 0  // TODO: Extract the theme's background visible rightMargin
 
         // HACK: workaround for https://bugreports.qt.io/browse/QTBUG-83890
         PlasmaComponents3.ScrollBar.horizontal.policy: PlasmaComponents3.ScrollBar.AlwaysOff
@@ -69,11 +70,8 @@ PlasmaExtras.Representation {
             model: btManager.adapters.length > 0 && !btManager.bluetoothBlocked ? devicesModel : null
             currentIndex: -1
             boundsBehavior: Flickable.StopAtBounds
-            topMargin: PlasmaCore.Units.smallSpacing * 2
-            bottomMargin: PlasmaCore.Units.smallSpacing * 2
-            leftMargin: PlasmaCore.Units.smallSpacing * 2
-            rightMargin: PlasmaCore.Units.smallSpacing * 2
-            spacing: PlasmaCore.Units.smallSpacing
+            topMargin: 6 // TODO: Extract the theme's background visible topMargin
+            rightMargin: scrollView.PlasmaComponents3.ScrollBar.vertical.visible ? PlasmaCore.Units.smallSpacing : 0
 
             section.property: "Section"
             // We want to hide the section delegate for the "Connected"
